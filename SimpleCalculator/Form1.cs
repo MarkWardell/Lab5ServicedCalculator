@@ -11,6 +11,7 @@ namespace SimpleCalculator
 {
     public partial class frmCalculator : Form
     {
+        private CalculatorReference.CalculatorSoapClient calcRef;
         string operand1 = string.Empty;
         string operand2 = string.Empty;
         string result;
@@ -21,8 +22,11 @@ namespace SimpleCalculator
             InitializeComponent();
         }
 
+        
+
         private void frmCalculator_Load(object sender, EventArgs e)
         {
+            calcRef = new CalculatorReference.CalculatorSoapClient();
             btnOne.Click += new EventHandler(btn_Click);
             btnTwo.Click += new EventHandler(btn_Click);
             btnThree.Click += new EventHandler(btn_Click);
@@ -163,7 +167,8 @@ namespace SimpleCalculator
                     break;
 
                 case '-':
-                    result = (opr1 - opr2).ToString();
+                    //result = (opr1 - opr2).ToString();
+                    result = calcRef.Subtrct(opr1, opr2 ).ToString();
                     break;
 
                 case '*':
@@ -219,9 +224,6 @@ namespace SimpleCalculator
             }
         }
 
-        private void btnThree_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
