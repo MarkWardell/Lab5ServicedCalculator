@@ -1,4 +1,9 @@
-﻿using System;
+﻿#define DEBUG
+#if DEBUG 
+#warning DEBUG is defined 
+#endif 
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,12 +16,13 @@ namespace SimpleCalculator
 {
     public partial class frmCalculator : Form
     {
+        #region PRIVATES
         private CalculatorReference.CalculatorSoapClient calcRef;
         string operand1 = string.Empty;
         string operand2 = string.Empty;
         string result;
         char operation;
-
+        #endregion
         public frmCalculator()
         {
             InitializeComponent();
@@ -38,6 +44,7 @@ namespace SimpleCalculator
             btnNine.Click += new EventHandler(btn_Click);
             btnZero.Click += new EventHandler(btn_Click);
             btnDot.Click += new EventHandler(btn_Click);
+
         }
 
         void btn_Click(object sender, EventArgs e)
@@ -48,35 +55,17 @@ namespace SimpleCalculator
 
                 switch (btn.Name)
                 {
-                    case "btnOne":
-                        txtInput.Text += "1";
-                        break;
-                    case "btnTwo":
-                        txtInput.Text += "2";
-                        break;
-                    case "btnThree":
-                        txtInput.Text += "3";
-                        break;
-                    case "btnFour":
-                        txtInput.Text += "4";
-                        break;
-                    case "btnFive":
-                        txtInput.Text += "5";
-                        break;
-                    case "btnSix":
-                        txtInput.Text += "6";
-                        break;
-                    case "btnSeven":
-                        txtInput.Text += "7";
-                        break;
-                    case "btnEight":
-                        txtInput.Text += "8";
-                        break;
-                    case "btnNine":
-                        txtInput.Text += "9";
-                        break;
+                    case "btnOne":         
+                    case "btnTwo":                  
+                    case "btnThree":                       
+                    case "btnFour":                     
+                    case "btnFive":                     
+                    case "btnSix":                     
+                    case "btnSeven":                     
+                    case "btnEight":                     
+                    case "btnNine":                      
                     case "btnZero":
-                        txtInput.Text += "0";
+                        txtInput.Text += btn.Text;
                         break;
                     case "btnDot":
                         if(!txtInput.Text.Contains("."))

@@ -16,6 +16,7 @@ namespace CalculatorService
     // [System.Web.Script.Services.ScriptService]
     public class Calculator : System.Web.Services.WebService
     {
+        internal int i;
 
         [WebMethod]
         public double Add (double f1, double f2)
